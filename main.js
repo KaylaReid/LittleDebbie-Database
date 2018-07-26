@@ -17,7 +17,23 @@
 //     amount: "12pc",
 //     description: "Soooo yummy"
 // }
+const littleDebbieArray = []
 
+
+const loadDatabase = function (databaseObject, localStorageKey) {
+    /* Convert the Object into a string. */
+    let stringifiedDatabase = JSON.stringify(databaseObject)
+    /* Create a key in local storage, and store the string
+        version of your inventory database as the value */
+    localStorage.setItem(localStorageKey, stringifiedDatabase)
+}
+// loadDatabase(littleDebbieArray, "Little Debbie Array");
+
+
+function storeSnack (arg){
+    littleDebbieArray.push(arg);
+    loadDatabase(littleDebbieArray, "Little Debbie Array");
+}
 
 // function that makes objcts!!! THIS more efficient!!
 // you an use the same variable name for the key without it causing issues, some are the same here some a dif to remind me 
@@ -30,10 +46,9 @@ const snackMaker = (title, brand, flavor, filling, amount2, description2) =>{
         amount: amount2,
         description: description2
     }
-    return snackCake
+    storeSnack(snackCake);
 }
 
-function populateDB(){
 const vanillaCake = snackMaker("Cake", "Little Debbie", "Vanilla", "Frosting", "12pc", "Yummy Yummy");
 
 const nuttyBuddy = snackMaker("Nutty Buddy", "Little Debbie",  "chocolate and peanut butter", "peatnut butter", "12pc",
@@ -41,25 +56,12 @@ const nuttyBuddy = snackMaker("Nutty Buddy", "Little Debbie",  "chocolate and pe
 
 const oatmealCreamPie = snackMaker("Oatmeal Cream Pie", "Little Debbie", "Oatmeal Cream", "Vanilla Frosting", "12pc", "Soooo yummy");
 
-const littleDebbieArray = []
-littleDebbieArray.push(oatmealCreamPie);
-littleDebbieArray.push(nuttyBuddy);
-littleDebbieArray.push(vanillaCake);
+// function populateDB(){
 
-const stringified = JSON.stringify(littleDebbieArray);
-localStorage.setItem("Little Debbie Array", stringified)
-}
+// littleDebbieArray.push(oatmealCreamPie);
+// littleDebbieArray.push(nuttyBuddy);
+// littleDebbieArray.push(vanillaCake);
 
-
-
-
-// const saveDatabase = function (databaseObject, localStorageKey) {
-//     /* Convert the Object into a string. */
-//     let stringifiedDatabase = JSON.stringify(databaseObject)
-//     /* Create a key in local storage, and store the string
-//         version of your inventory database as the value */
-//     localStorage.setItem(localStorageKey, stringifiedDatabase)
+// const stringified = JSON.stringify(littleDebbieArray);
+// localStorage.setItem("Little Debbie Array", stringified)
 // }
-// saveDatabase(oatmealCreamPie, "Oatmeal Cream Pie")
-
-// localStorage.setItem(oatmealCreamPie, "Oatmeal Cream Pie")
